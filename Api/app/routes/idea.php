@@ -8,7 +8,7 @@ $app->get("/idea/", function() use($app){
 		$connection = getConnection();
 		$dbh = $connection->prepare("SELECT * FROM idea");
 		$dbh->execute();
-		$idea = $dbh->fetchAll();
+		$idea = $dbh->fetchAll(PDO::FETCH_OBJ);
 		$connection = null;
 
 		$app->response->headers->set("Content-type", "application/json");
@@ -29,7 +29,7 @@ $app->get("/idea/:id", function($id) use($app){
 		$dbh = $connection->prepare("SELECT * FROM idea WHERE idIdea LIKE '$id'");
 		$dbh->bindParam(1, $id);
 		$dbh->execute();
-		$idea = $dbh->fetch();
+		$idea = $dbh->fetchObject();
 		$connection = null;
 
 		$app->response->headers->set("Content-type", "application/json");

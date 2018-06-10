@@ -44,7 +44,6 @@ $app->get("/idea/:id", function($id) use($app){
 
 $app->post("/addI/", function() use($app){
 	
-	$idIdea = $app->request->post("idIdea");
 	$titulo = $app->request->post("titulo");
 	$cuerpo = $app->request->post("cuerpo");
 	$referencia = $app->request->post("referencia");
@@ -54,13 +53,12 @@ $app->post("/addI/", function() use($app){
 
 	try {
 		$connection = getConnection();
-		$dbh = $connection->prepare("INSERT INTO idea VALUES(?, ?, ?, ?, ?, ?)");
-		$dbh->bindParam(1, $idIdea);
-		$dbh->bindParam(2, $titulo);
-		$dbh->bindParam(3, $cuerpo);
-		$dbh->bindParam(4, $referencia);
-		$dbh->bindParam(5, $contacto);
-		$dbh->bindParam(6, $nombre);
+		$dbh = $connection->prepare("INSERT INTO idea VALUES(?, ?, ?, ?, ?)");
+		$dbh->bindParam(1, $titulo);
+		$dbh->bindParam(2, $cuerpo);
+		$dbh->bindParam(3, $referencia);
+		$dbh->bindParam(4, $contacto);
+		$dbh->bindParam(5, $nombre);
 
 
 		$dbh->execute();

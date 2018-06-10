@@ -53,7 +53,7 @@ $app->post("/addI/", function() use($app){
 
 	try {
 		$connection = getConnection();
-		$dbh = $connection->prepare("INSERT INTO idea VALUES(?, ?, ?, ?, ?)");
+		$dbh = $connection->prepare("INSERT INTO idea VALUES(?, ?, ?, ?, ?, ?)");
 		$dbh->bindParam(1, $titulo);
 		$dbh->bindParam(2, $cuerpo);
 		$dbh->bindParam(3, $referencia);
